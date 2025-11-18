@@ -1949,7 +1949,7 @@ function FamilyMoneyManager() {
               </div>
             </button>
 
-            {/* Charts - Temporarily disabled for browser compatibility
+            {/* Charts */}
             <button
               onClick={() => {
                 setCurrentView('charts');
@@ -1962,7 +1962,6 @@ function FamilyMoneyManager() {
               <BarChart3 className="w-6 h-6" />
               <span className="text-xs font-semibold">Charts</span>
             </button>
-            */}
 
             {/* Transactions */}
             <button
@@ -2094,47 +2093,13 @@ function BalanceChart({ childId, balanceType, setBalanceType, generateChartData,
         ))}
       </div>
 
-      <ResponsiveContainer width="100%" height={300}>
-        <AreaChart data={chartData} margin={{ left: -20, right: 10, top: 10, bottom: 0 }}>
-          <defs>
-            <linearGradient id="colorBalance" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor={chartColor} stopOpacity={0.8}/>
-              <stop offset="95%" stopColor={chartColor} stopOpacity={0.4}/>
-            </linearGradient>
-          </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? '#ffffff' : '#000000'} strokeOpacity={0.3} />
-          <XAxis 
-            dataKey="date"
-            tickFormatter={formatDate}
-            stroke={darkMode ? '#ffffff' : '#000000'}
-            tick={{ fontSize: 12, fill: darkMode ? '#ffffff' : '#000000' }}
-          />
-          <YAxis 
-            domain={[yAxisMin, yAxisMax]}
-            stroke={darkMode ? '#ffffff' : '#000000'}
-            tick={{ fontSize: 12, fill: darkMode ? '#ffffff' : '#000000' }}
-            tickFormatter={(value) => `$${Math.round(value)}`}
-          />
-          <Tooltip 
-            contentStyle={{
-              backgroundColor: darkMode ? '#1f2937' : '#ffffff',
-              border: `1px solid ${darkMode ? '#374151' : '#e5e7eb'}`,
-              borderRadius: '8px',
-              color: darkMode ? '#f3f4f6' : '#111827'
-            }}
-            formatter={(value) => formatCurrency(value)}
-            labelFormatter={formatDate}
-          />
-          <Area 
-            type="monotone" 
-            dataKey={dataKey}
-            stroke={chartColor}
-            strokeWidth={3}
-            fillOpacity={1} 
-            fill="url(#colorBalance)" 
-          />
-        </AreaChart>
-      </ResponsiveContainer>
+      <div className={`${cardBg} rounded-xl p-6 text-center`}>
+        <BarChart3 className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+        <h3 className={`text-xl font-bold ${textColor} mb-2`}>Charts Coming Soon!</h3>
+        <p className={`${textSecondary}`}>
+          Visual charts will be available in a future update
+        </p>
+      </div>
     </div>
   );
 }
