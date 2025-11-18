@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Wallet, Plus, Minus, ArrowLeftRight, TrendingUp, Settings, Moon, Sun, Lock, Unlock, Download, Upload, X, Edit2, Trash2, Camera, Check, Eye, EyeOff, DollarSign, PiggyBank, Calendar, Percent, Home, Receipt, BarChart3, HelpCircle, ArrowLeft } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart, ReferenceLine } from 'recharts';
+const { useState, useEffect, useCallback } = React;
+const { Wallet, Plus, Minus, ArrowLeftRight, TrendingUp, Settings, Moon, Sun, Lock, Unlock, Download, Upload, X, Edit2, Trash2, Camera, Check, Eye, EyeOff, DollarSign, PiggyBank, Calendar, Percent, Home, Receipt, BarChart3, HelpCircle, ArrowLeft } = lucide;
+const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart, ReferenceLine } = Recharts;
 
 // Storage Adapter - Future-proof for Supabase migration
 const StorageAdapter = {
@@ -138,7 +138,7 @@ const cropImageToSquare = (file) => {
 };
 
 // Main App Component
-export default function FamilyMoneyManager() {
+function FamilyMoneyManager() {
   const [darkMode, setDarkMode] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
   const [pinInput, setPinInput] = useState('');
@@ -3786,3 +3786,8 @@ function EditTransactionModal({ transaction, onClose, onDelete, onEdit, requireP
     </div>
   );
 }
+
+
+// Render the app
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<FamilyMoneyManager />);
