@@ -1,35 +1,44 @@
-const { useState, useEffect, useCallback } = React;
-const { createElement } = React;
+const { useState, useEffect, useCallback, createElement } = React;
 
-// Lucide icons
-const Wallet = (props) => createElement(lucide.Wallet, props);
-const Plus = (props) => createElement(lucide.Plus, props);
-const Minus = (props) => createElement(lucide.Minus, props);
-const ArrowLeftRight = (props) => createElement(lucide.ArrowLeftRight, props);
-const TrendingUp = (props) => createElement(lucide.TrendingUp, props);
-const Settings = (props) => createElement(lucide.Settings, props);
-const Moon = (props) => createElement(lucide.Moon, props);
-const Sun = (props) => createElement(lucide.Sun, props);
-const Lock = (props) => createElement(lucide.Lock, props);
-const Unlock = (props) => createElement(lucide.Unlock, props);
-const Download = (props) => createElement(lucide.Download, props);
-const Upload = (props) => createElement(lucide.Upload, props);
-const X = (props) => createElement(lucide.X, props);
-const Edit2 = (props) => createElement(lucide.Edit2, props);
-const Trash2 = (props) => createElement(lucide.Trash2, props);
-const Camera = (props) => createElement(lucide.Camera, props);
-const Check = (props) => createElement(lucide.Check, props);
-const Eye = (props) => createElement(lucide.Eye, props);
-const EyeOff = (props) => createElement(lucide.EyeOff, props);
-const DollarSign = (props) => createElement(lucide.DollarSign, props);
-const PiggyBank = (props) => createElement(lucide.PiggyBank, props);
-const Calendar = (props) => createElement(lucide.Calendar, props);
-const Percent = (props) => createElement(lucide.Percent, props);
-const Home = (props) => createElement(lucide.Home, props);
-const Receipt = (props) => createElement(lucide.Receipt, props);
-const BarChart3 = (props) => createElement(lucide.BarChart3, props);
-const HelpCircle = (props) => createElement(lucide.HelpCircle, props);
-const ArrowLeft = (props) => createElement(lucide.ArrowLeft, props);
+// Create icon components from Lucide
+const createIcon = (iconName) => (props) => {
+  const LucideIcon = lucide[iconName];
+  if (!LucideIcon) return null;
+  return createElement('svg', {
+    ...props,
+    dangerouslySetInnerHTML: { __html: LucideIcon.toSvg(props) }
+  });
+};
+
+// Create all icon components
+const Wallet = createIcon('Wallet');
+const Plus = createIcon('Plus');
+const Minus = createIcon('Minus');
+const ArrowLeftRight = createIcon('ArrowLeftRight');
+const TrendingUp = createIcon('TrendingUp');
+const Settings = createIcon('Settings');
+const Moon = createIcon('Moon');
+const Sun = createIcon('Sun');
+const Lock = createIcon('Lock');
+const Unlock = createIcon('Unlock');
+const Download = createIcon('Download');
+const Upload = createIcon('Upload');
+const X = createIcon('X');
+const Edit2 = createIcon('Edit2');
+const Trash2 = createIcon('Trash2');
+const Camera = createIcon('Camera');
+const Check = createIcon('Check');
+const Eye = createIcon('Eye');
+const EyeOff = createIcon('EyeOff');
+const DollarSign = createIcon('DollarSign');
+const PiggyBank = createIcon('PiggyBank');
+const Calendar = createIcon('Calendar');
+const Percent = createIcon('Percent');
+const Home = createIcon('Home');
+const Receipt = createIcon('Receipt');
+const BarChart3 = createIcon('BarChart3');
+const HelpCircle = createIcon('HelpCircle');
+const ArrowLeft = createIcon('ArrowLeft');
 
 // Note: Charts functionality temporarily disabled for browser compatibility
 // const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart, ReferenceLine } = Recharts;
