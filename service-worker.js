@@ -2,7 +2,7 @@ const CACHE_NAME = 'kidmoney-v1';
 const urlsToCache = [
   './',
   './index.html',
-  './family-money-manager.jsx',
+  './family-money-manager.js',
   './manifest.json',
   'https://unpkg.com/react@18/umd/react.production.min.js',
   'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js',
