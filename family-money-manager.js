@@ -1,6 +1,7 @@
 const { useState, useEffect, useCallback } = React;
 const { Wallet, Plus, Minus, ArrowLeftRight, TrendingUp, Settings, Moon, Sun, Lock, Unlock, Download, Upload, X, Edit2, Trash2, Camera, Check, Eye, EyeOff, DollarSign, PiggyBank, Calendar, Percent, Home, Receipt, BarChart3, HelpCircle, ArrowLeft } = lucide;
-const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart, ReferenceLine } = Recharts;
+// Note: Charts functionality temporarily disabled for browser compatibility
+// const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart, ReferenceLine } = Recharts;
 
 // Storage Adapter - Future-proof for Supabase migration
 const StorageAdapter = {
@@ -1904,7 +1905,7 @@ function FamilyMoneyManager() {
               </div>
             </button>
 
-            {/* Charts */}
+            {/* Charts - Temporarily disabled for browser compatibility
             <button
               onClick={() => {
                 setCurrentView('charts');
@@ -1917,6 +1918,7 @@ function FamilyMoneyManager() {
               <BarChart3 className="w-6 h-6" />
               <span className="text-xs font-semibold">Charts</span>
             </button>
+            */}
 
             {/* Transactions */}
             <button
