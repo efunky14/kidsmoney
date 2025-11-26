@@ -1,28 +1,52 @@
 const { useState, useEffect, useCallback } = React;
 
-// Simple SVG icon wrapper
-const Icon = ({ d, ...props }) => React.createElement('svg', {
-  xmlns: "http://www.w3.org/2000/svg",
-  width: "24",
-  height: "24",
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: "2",
-  strokeLinecap: "round",
-  strokeLinejoin: "round",
-  ...props
-}, React.createElement('path', { d }));
+// Simple SVG icon wrapper using JSX
+const Icon = ({ d, ...props }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d={d} />
+  </svg>
+);
 
 // Icon components with SVG paths
-const Wallet = (props) => Icon({ d: "M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4", ...props });
-const Plus = (props) => Icon({ d: "M5 12h14M12 5v14", ...props });
-const Minus = (props) => Icon({ d: "M5 12h14", ...props });
-const ArrowLeftRight = (props) => Icon({ d: "m6 8-4 4 4 4M18 8l4 4-4 4M2 12h20", ...props });
-const TrendingUp = (props) => Icon({ d: "m22 7-8.5 8.5-5-5L2 17M16 7h6v6", ...props });
-const Settings = (props) => Icon({ d: "M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z", ...props });
-const Moon = (props) => Icon({ d: "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z", ...props });
-const Sun = (props) => Icon({ d: "M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z", ...props });
+const Wallet = (props) => <Icon d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" {...props} />;
+const Plus = (props) => <Icon d="M5 12h14M12 5v14" {...props} />;
+const Minus = (props) => <Icon d="M5 12h14" {...props} />;
+const ArrowLeftRight = (props) => <Icon d="m6 8-4 4 4 4M18 8l4 4-4 4M2 12h20" {...props} />;
+const TrendingUp = (props) => <Icon d="m22 7-8.5 8.5-5-5L2 17M16 7h6v6" {...props} />;
+const Settings = (props) => <Icon d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" {...props} />;
+const Moon = (props) => <Icon d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" {...props} />;
+const Sun = (props) => <Icon d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" {...props} />;
+const Lock = (props) => <Icon d="M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2zM7 11V7a5 5 0 0 1 10 0v4" {...props} />;
+const Unlock = (props) => <Icon d="M7 11V7a5 5 0 0 1 9.9-1M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z" {...props} />;
+const Download = (props) => <Icon d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" {...props} />;
+const Upload = (props) => <Icon d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" {...props} />;
+const X = (props) => <Icon d="M18 6 6 18M6 6l12 12" {...props} />;
+const Edit2 = (props) => <Icon d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5ZM15 5l4 4" {...props} />;
+const Trash2 = (props) => <Icon d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2M10 11v6M14 11v6" {...props} />;
+const Camera = (props) => <Icon d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" {...props} />;
+const Check = (props) => <Icon d="M20 6 9 17l-5-5" {...props} />;
+const Eye = (props) => <Icon d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" {...props} />;
+const EyeOff = (props) => <Icon d="M9.88 9.88a3 3 0 1 0 4.24 4.24M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61M2 2l20 20" {...props} />;
+const DollarSign = (props) => <Icon d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" {...props} />;
+const PiggyBank = (props) => <Icon d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2h0V5zM2 9v1c0 1.1.9 2 2 2h1M16 11h0" {...props} />;
+const Calendar = (props) => <Icon d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" {...props} />;
+const Percent = (props) => <Icon d="M19 5 5 19M6.5 9a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM17.5 20a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" {...props} />;
+const Home = (props) => <Icon d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10" {...props} />;
+const Receipt = (props) => <Icon d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1zM16 8h-6M16 12h-6M16 16h-6" {...props} />;
+const BarChart3 = (props) => <Icon d="M3 3v18h18M18 17V9M13 17V5M8 17v-3" {...props} />;
+const HelpCircle = (props) => <Icon d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zM9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01" {...props} />;
+const ArrowLeft = (props) => <Icon d="m12 19-7-7 7-7M19 12H5" {...props} />;
 const Lock = (props) => Icon({ d: "M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2zM7 11V7a5 5 0 0 1 10 0v4", ...props });
 const Unlock = (props) => Icon({ d: "M7 11V7a5 5 0 0 1 9.9-1M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z", ...props });
 const Download = (props) => Icon({ d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3", ...props });
@@ -2248,9 +2272,9 @@ function AddChildModal({ onClose, onSave, darkMode, cardBg, textColor, textSecon
             {/* Avatar */}
             <div className="flex flex-col items-center flex-shrink-0">
               {formData.avatar ? (
-                <img src={formData.avatar} alt="Avatar" className="w-32 h-32 rounded-full object-cover mb-3" />
+                <img src={formData.avatar} alt="Avatar" className="w-24 h-24 rounded-full object-cover mb-3" />
               ) : (
-                <div className={`w-32 h-32 rounded-full ${getAvatarGradient(formData.avatarColor)} flex items-center justify-center mb-3`}>
+                <div className={`w-24 h-24 rounded-full ${getAvatarGradient(formData.avatarColor)} flex items-center justify-center mb-3`}>
                   <span className="text-white text-6xl font-bold leading-none">{formData.name ? formData.name.charAt(0).toUpperCase() : '?'}</span>
                 </div>
               )}
@@ -2302,13 +2326,13 @@ function AddChildModal({ onClose, onSave, darkMode, cardBg, textColor, textSecon
                 type="number"
                 onChange={(e) => setFormData({ ...formData, spendingBalance: parseFloat(e.target.value) || 0 })}
                 placeholder="Spending $0"
-                className={`w-30 px-2 py-3 rounded-lg border ${borderColor} ${cardBg} ${textColor} text-center`}
+                className={`flex-1 px-2 py-3 rounded-lg border ${borderColor} ${cardBg} ${textColor} text-center`}
               />
               <input
                 type="number"
                 onChange={(e) => setFormData({ ...formData, savingBalance: parseFloat(e.target.value) || 0 })}
                 placeholder="Savings $0"
-                className={`w-30 px-2 py-3 rounded-lg border ${borderColor} ${cardBg} ${textColor} text-center`}
+                className={`flex-1 px-2 py-3 rounded-lg border ${borderColor} ${cardBg} ${textColor} text-center`}
               />
             </div>
           </div>
@@ -2554,9 +2578,9 @@ function EditChildModal({ child, onClose, onSave, onDelete, darkMode, cardBg, te
           {/* Avatar */}
           <div className="flex flex-col items-center">
             {formData.avatar ? (
-              <img src={formData.avatar} alt="Avatar" className="w-32 h-32 rounded-full object-cover mb-4" />
+              <img src={formData.avatar} alt="Avatar" className="w-24 h-24 rounded-full object-cover mb-4" />
             ) : (
-              <div className={`w-32 h-32 rounded-full ${getAvatarGradient(formData.avatarColor)} flex items-center justify-center mb-4`}>
+              <div className={`w-24 h-24 rounded-full ${getAvatarGradient(formData.avatarColor)} flex items-center justify-center mb-4`}>
                 <span className="text-white text-6xl font-bold leading-none">{formData.name.charAt(0)}</span>
               </div>
             )}
